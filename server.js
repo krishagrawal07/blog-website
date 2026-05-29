@@ -6,7 +6,7 @@ const crypto = require("crypto");
 const PORT = process.env.PORT || 3000;
 const ROOT = __dirname;
 const PUBLIC_DIR = path.join(ROOT, "public");
-const DATA_DIR = path.join(ROOT, "data");
+const DATA_DIR = process.env.VERCEL ? path.join("/tmp", "blog-platform-data") : path.join(ROOT, "data");
 const DB_FILE = path.join(DATA_DIR, "db.json");
 const TOKEN_TTL_MS = 1000 * 60 * 60 * 24 * 7;
 
@@ -360,7 +360,7 @@ async function serveStatic(req, res, url) {
   }
 }
 
-const server = http.createServer(async (req, res) => {
+async function requestHandler(req, res) {
   const url = new URL(req.url, `http://${req.headers.host}`);
   try {
     if (url.pathname.startsWith("/api/")) {
@@ -373,7 +373,9 @@ const server = http.createServer(async (req, res) => {
     sendError(res, status, status === 400 ? "Invalid JSON body." : "Something went wrong.");
     console.error(error);
   }
-});
+}
+
+const server = http.createServer(requestHandler);
 
 async function startServer(port = PORT) {
   await ensureDb();
@@ -386,4 +388,4 @@ if (require.main === module) {
   startServer();
 }
 
-module.exports = { server, startServer, ensureDb };
+module.exports = { server, startServer, ensureDb, requestHandler };
