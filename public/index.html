@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Inkline Blog Platform</title>
+    <link rel="stylesheet" href="/styles.css">
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="/" aria-label="Inkline home">
+        <span class="brand-mark">I</span>
+        <span>Inkline</span>
+      </a>
+      <nav class="nav-actions">
+        <span id="userBadge" class="user-badge" hidden></span>
+        <button id="newPostButton" class="button secondary" type="button" hidden>New post</button>
+        <button id="authButton" class="button primary" type="button">Log in</button>
+      </nav>
+    </header>
+
+    <main class="shell">
+      <section class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow">Blog Platform with Comments</p>
+          <h1>Write posts, manage drafts, and keep the conversation going.</h1>
+          <p>
+            A complete blogging workspace with user accounts, REST APIs, persistent storage,
+            post management, and threaded reader interaction.
+          </p>
+        </div>
+        <div class="hero-panel" aria-label="Platform highlights">
+          <div>
+            <strong id="postCount">0</strong>
+            <span>Published posts</span>
+          </div>
+          <div>
+            <strong id="commentCount">0</strong>
+            <span>Comments</span>
+          </div>
+          <div>
+            <strong>REST</strong>
+            <span>Backend API</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="workspace">
+        <aside class="composer" id="composer" hidden>
+          <div class="section-heading">
+            <h2 id="composerTitle">Create post</h2>
+            <button class="icon-button" id="closeComposer" type="button" aria-label="Close editor">&times;</button>
+          </div>
+          <form id="postForm" class="stack">
+            <input id="postId" type="hidden">
+            <label>
+              <span>Title</span>
+              <input id="postTitle" name="title" type="text" maxlength="140" required>
+            </label>
+            <label>
+              <span>Excerpt</span>
+              <textarea id="postExcerpt" name="excerpt" rows="3" maxlength="220"></textarea>
+            </label>
+            <label>
+              <span>Content</span>
+              <textarea id="postContent" name="content" rows="9" required></textarea>
+            </label>
+            <div class="form-actions">
+              <button class="button secondary" id="resetPostForm" type="button">Reset</button>
+              <button class="button primary" type="submit">Publish</button>
+            </div>
+          </form>
+        </aside>
+
+        <section class="feed">
+          <div class="feed-header">
+            <div>
+              <h2>Latest posts</h2>
+              <p>Read, comment, and manage your own writing.</p>
+            </div>
+            <input id="searchInput" class="search" type="search" placeholder="Search posts">
+          </div>
+          <div id="posts" class="post-list"></div>
+        </section>
+      </section>
+    </main>
+
+    <dialog id="authDialog" class="dialog">
+      <form method="dialog" class="dialog-close-row">
+        <button class="icon-button" type="submit" aria-label="Close dialog">&times;</button>
+      </form>
+      <div class="tabs" role="tablist" aria-label="Authentication">
+        <button id="loginTab" class="tab active" type="button">Log in</button>
+        <button id="registerTab" class="tab" type="button">Register</button>
+      </div>
+      <form id="authForm" class="stack">
+        <label id="nameField" hidden>
+          <span>Name</span>
+          <input id="nameInput" name="name" type="text" autocomplete="name">
+        </label>
+        <label>
+          <span>Email</span>
+          <input id="emailInput" name="email" type="email" autocomplete="email" required>
+        </label>
+        <label>
+          <span>Password</span>
+          <input id="passwordInput" name="password" type="password" autocomplete="current-password" required>
+        </label>
+        <button id="authSubmit" class="button primary full" type="submit">Log in</button>
+        <p class="hint">Demo account: demo@example.com / password123</p>
+      </form>
+    </dialog>
+
+    <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+    <script src="/app.js" defer></script>
+  </body>
+</html>

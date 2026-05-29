@@ -1,0 +1,18 @@
+{
+  "name": "blog-platform-with-comments",
+  "version": "1.0.0",
+  "description": "A complete blogging platform with authentication, posts, comments, REST APIs, and persistent storage.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "node scripts/smoke-test.js"
+  },
+  "keywords": [
+    "blog",
+    "comments",
+    "rest-api",
+    "node"
+  ],
+  "author": "",
+  "license": "MIT"
+}
