@@ -3,13 +3,17 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#f4f0e8">
     <title>Inkline Blog Platform</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/styles.css">
   </head>
   <body>
     <header class="topbar">
       <a class="brand" href="/" aria-label="Inkline home">
-        <span class="brand-mark">I</span>
+        <span class="brand-mark">in</span>
         <span>Inkline</span>
       </a>
       <nav class="nav-actions">
@@ -22,26 +26,28 @@
     <main class="shell">
       <section class="hero">
         <div class="hero-copy">
-          <p class="eyebrow">Blog Platform with Comments</p>
-          <h1>Write posts, manage drafts, and keep the conversation going.</h1>
+          <p class="eyebrow"><span></span> Independent stories, thoughtfully told</p>
+          <h1>Ideas worth <em>sharing.</em><br>Stories worth keeping.</h1>
           <p>
-            A complete blogging workspace with user accounts, REST APIs, persistent storage,
-            post management, and threaded reader interaction.
+            A calm corner of the internet for curious minds. Read original perspectives,
+            join meaningful conversations, or publish a story of your own.
           </p>
         </div>
         <div class="hero-panel" aria-label="Platform highlights">
+          <p class="panel-label">Inside Inkline</p>
           <div>
+            <span>Published stories</span>
             <strong id="postCount">0</strong>
-            <span>Published posts</span>
           </div>
           <div>
+            <span>Reader responses</span>
             <strong id="commentCount">0</strong>
-            <span>Comments</span>
           </div>
           <div>
-            <strong>REST</strong>
-            <span>Backend API</span>
+            <span>Open to everyone</span>
+            <strong class="live-status"><i></i> Live</strong>
           </div>
+          <span class="panel-flourish">✦</span>
         </div>
       </section>
 
@@ -76,9 +82,9 @@
           <div class="feed-header">
             <div>
               <h2>Latest posts</h2>
-              <p>Read, comment, and manage your own writing.</p>
+              <p>Fresh thinking from the Inkline community.</p>
             </div>
-            <input id="searchInput" class="search" type="search" placeholder="Search posts">
+            <input id="searchInput" class="search" type="search" placeholder="Search stories…" aria-label="Search stories">
           </div>
           <div id="posts" class="post-list"></div>
         </section>

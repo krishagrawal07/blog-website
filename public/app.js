@@ -138,8 +138,14 @@ function renderPosts() {
   }
 
   elements.posts.innerHTML = posts
-    .map((post) => {
+    .map((post, index) => {
       const canEdit = state.user?.id === post.author.id;
+      const initials = post.author.name
+        .split(" ")
+        .map((part) => part[0])
+        .join("")
+        .slice(0, 2)
+        .toUpperCase();
       const comments = post.comments
         .map(
           (comment) => `
@@ -160,11 +166,14 @@ function renderPosts() {
 
       return `
         <article class="post-card" data-post-id="${post.id}">
+          <div class="post-number">${String(index + 1).padStart(2, "0")}</div>
           <div class="post-title-row">
             <div>
+              <p class="post-kicker">Editor’s journal</p>
               <h3>${escapeHtml(post.title)}</h3>
               <div class="meta">
-                <span>By ${escapeHtml(post.author.name)}</span>
+                <span class="author-avatar">${escapeHtml(initials)}</span>
+                <span>By <strong>${escapeHtml(post.author.name)}</strong></span>
                 <span>${formatDate(post.updatedAt)}</span>
                 <span>${post.commentCount} comments</span>
               </div>
@@ -178,6 +187,7 @@ function renderPosts() {
                 : ""
             }
           </div>
+          ${post.excerpt ? `<p class="post-excerpt">${escapeHtml(post.excerpt)}</p>` : ""}
           <p class="post-body">${escapeHtml(post.content)}</p>
           <section class="comments">
             <h4>Comments</h4>
